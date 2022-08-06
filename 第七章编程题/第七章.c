@@ -1,8 +1,10 @@
 #include <stdio.h>
 void one(void);//1
+void two(void);//2
 int main()
 {
 	one();
+	//two();
 	return 0;
 }
 
@@ -21,4 +23,19 @@ void one(void)
 		}
 	}
 	printf("空格：%d,换行：%d,其他：%d", i, j, k);
+}
+
+//2*********************************************
+void two(void)
+{
+	char ch; int i = 0;
+	while ((ch = getchar()) != '#')
+	{
+		if(ch=='\n')
+			printf("%3d ", ch);
+		printf("%3d ", ch);
+		i++;
+		if (!(i % 8))
+			putchar('\n');
+	}
 }
