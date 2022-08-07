@@ -10,13 +10,15 @@ void four(void);//4
 void six(void);//6,此为错误解法。
 void six1(void);//6
 void eight(void);//8
+void eleven(void);//11
 int main()
 {
 	//one();
 	//two1();
 	//four();
 	//six1();
-	eight();
+	//eight();
+	eleven();
 	return 0;
 }
 
@@ -125,7 +127,7 @@ void eight(void)
 	double salary_grade = 0; int choose;
 	double hour,salary;
 
-	printf("请选择工资等级\n");
+	start:printf("请正确的输入相应数字选择工资等级\n");
 	printf("1)8.75/hr      2)9.33/hr\n");
 	printf("3)10.00/hr     4)11.20/hr\n");
 	printf("5)quit   \n");
@@ -142,7 +144,8 @@ void eight(void)
 		break;
 	case 4:salary_grade = 11.20;
 		break;
-	default:goto end;
+	case 5:goto end;
+	default:goto start;
 	}
 
 	printf("请输入一周工作时间\n");
@@ -157,7 +160,78 @@ void eight(void)
 	else
 		salary = (300 * 0.85) + (150 * 0.8) + (salary - 450) * 0.75;
 
-	printf("%lf\n", salary);
+	printf("%.2lf\n", salary);
 
 end:printf("程序结束");
 }
+//9**********************************************************
+void nine(void)
+{
+
+}
+//11**********************************************************
+void eleven(void)
+{
+	char ch;
+	double i, j, k,sum,sum1,sum2,sum3, gross_weight,discount, freight;
+	sum1 = sum2 = sum3 = 0;
+	const double Artichoke = 2.05;
+	const double beet = 1.15;
+	const double carrot = 1.09;
+
+    printf("请正确的输入相应字母选购商品\n");
+	printf("a)洋蓟      b)甜菜\n");
+	printf("c)胡萝卜    q)离开选购\n");
+
+	while ((ch = getchar()) != 'q')
+	{
+		switch (ch)
+		{
+		case 'a': {
+			printf("请选择洋蓟购买数量\n");
+			scanf("%lf", &i);
+			sum1 += i;
+		}break;
+		case 'b': {
+			printf("请选择甜菜购买数量\n");
+			scanf("%lf", &j);
+			sum2 += j;
+		}break;
+		case 'c': {
+			printf("请选择胡萝卜购买数量\n");
+			scanf("%lf", &k);
+			sum3 += k;
+		}break;
+		case 'q':goto end;
+		default:printf("请重新选择\n");
+		}
+		getchar();                            //获取enter键的\n防止while循环出错
+		printf("请正确的输入相应字母选购商品\n");
+		printf("a)洋蓟      b)甜菜\n");
+		printf("c)胡萝卜    q)离开选购\n");
+	}
+
+end:sum = sum1*Artichoke + sum2* beet + sum3*carrot;
+	discount = sum;
+	gross_weight = sum1 + sum2 + sum3;
+	if (sum >= 100)
+		discount *= 0.95;
+
+	if (gross_weight <= 5)
+		freight = 6.5;
+	else if (gross_weight <= 20)
+		freight = 14;
+	else
+		freight = 14 + (gross_weight - 20) * 0.5;
+	
+	printf("总价：%.2lf美元 折扣：%.2lf美元 运费和包装费：%.2lf美元\n",
+		sum + freight, sum - discount, freight);
+	printf("洋蓟  ：%.2lf磅  单价：%.2lf美元/磅 总价：%.2lf美元\n",
+		sum1, Artichoke,sum1*Artichoke);
+	printf("甜菜  ：%.2lf磅  单价：%.2lf美元/磅 总价：%.2lf美元\n", 
+		sum2, beet,sum2*beet);
+	printf("胡萝卜：%.2lf磅  单价：%.2lf美元/磅 总价：%.2lf美元\n", 
+		sum3, carrot,sum3*carrot);
+	printf("应付：%.2lf美元\n",discount+freight);
+}
+
