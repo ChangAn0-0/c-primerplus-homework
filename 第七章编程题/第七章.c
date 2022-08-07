@@ -6,11 +6,14 @@ void two1(void);/*µÚ¶şÌâ¿ÉÒÔ¿´µ½ÎÒĞ´ÁËÁ½¸öº¯ÊıtwoºÍtwo1£¬µÚÒ»¸öÊÇÒ»¿ªÊ¼Ğ´µÄ£¬µ«Ê
 				Ó¦¸Ã»¹ÓĞÆäËû×÷ÓÃ£¬±ÈÈçË¢ĞÂÕâ¸öÑ­»·£¿ËùÒÔprintfĞ´ÔÚÑ­»·ÄÚµ¼ÖÂÁËÎÊÌâµÄ·¢Éú£¿ËùÒÔÎÒĞ´ÁËtwo1Õâ¸ö
 				³ÌĞò£¬ÎÒ°ÑprintfºÍwhileµÄÑ­»··Ö¿ª£¬ÏÈ´¢´æÔÙÊä³ö£¬Õâ´Î¹ûÈ»Ã»ÓĞÊÕµ½Ó°Ïì¡£*/
 void four(void);//4
+void six(void);//6,´ËÎª´íÎó½â·¨¡£
+void six1(void);//6
 int main()
 {
 	//one();
-	two1();
+	//two1();
 	//four();
+	six1();
 	return 0;
 }
 
@@ -71,7 +74,7 @@ void four(void)
 	while ((ch= getchar()) != '#')
 	{
 		if (ch == '.')
-			putchar('!');
+			putchar('!');//whileÑ­»·ÄÚµÄÊä³ö´æÔÚÓë2Í¬ÑùµÄÎÊÌâ¡£
 		else if (ch == '!')
 		{
 			putchar('!');
@@ -85,10 +88,36 @@ void four(void)
 //6**************************************************
 void six(void)
 {
-	char ch;
+	char ch; int i = 0;
 	while ((ch = getchar()) != '#')
 	{
-	if(ch=='e')
+		if (ch == 'e')
+			if (getchar() == 'i')//´Ë´¦ÓĞÎó£¬µ±ÊäÈëÎªeeiÊ±£¬ÖĞ¼äµÄe±»´Ë´¦µÄgetchar»ñÈ¡£¬                
+				i++;             //Ö®ºóµÄwhileÑ­»·ÖĞµÄgetchar»ñÈ¡i£¬µ¼ÖÂ³ÌĞòÊä³öÎª0¡£
+	}                            //ËùÒÔÔÚwhileÑ­»·ÖĞÓ¦¸Ã±ÜÃâÓÃgetchar¡£
+	printf("%d", i);
+}
 
+void six1(void)//´ËÎªÊé±¾´ğ°¸µÄ½â·¨£¬ÎÒµÄ±¾ÒâÊÇÈçÍ¬two1Ò»Ñù£¬ÏÈÉèÖÃÊı×é¶ÁÈëÊäÈë£¬È»ºóÍ¨¹ı
+{              //arr[i]=='e'&&arr[i+1]=='i'ÊÇ·ñÎªÕæÀ´ÅĞ¶Ï£¬²»¹ıÎÒ¾õµÃ´ğ°¸µÄ½â·¨¸üºÃ¡£
+	char ch; int j,i;
+	j = i = 0;
+	while ((ch = getchar()) != '#')
+	{
+		switch (ch)
+		{
+		case'e':j = 1; break;
+		case'i':if (j) {
+			i++; j = 0;
+		}break;
+		default:j = 0;
+		}
 	}
+	printf("%d", i);
+}
+
+//7****************************************************
+void seven(void)
+{
+
 }
