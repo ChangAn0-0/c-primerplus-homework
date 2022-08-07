@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 void one(void);//1
 void two1(void);/*µÚ¶þÌâ¿ÉÒÔ¿´µ½ÎÒÐ´ÁËÁ½¸öº¯ÊýtwoºÍtwo1£¬µÚÒ»¸öÊÇÒ»¿ªÊ¼Ð´µÄ£¬µ«ÊÇÔËÐÐµÄÊ±ºò³öÏÖÁËÒ»¸öÎÊÌâ
@@ -8,12 +9,14 @@ void two1(void);/*µÚ¶þÌâ¿ÉÒÔ¿´µ½ÎÒÐ´ÁËÁ½¸öº¯ÊýtwoºÍtwo1£¬µÚÒ»¸öÊÇÒ»¿ªÊ¼Ð´µÄ£¬µ«Ê
 void four(void);//4
 void six(void);//6,´ËÎª´íÎó½â·¨¡£
 void six1(void);//6
+void eight(void);//8
 int main()
 {
 	//one();
 	//two1();
 	//four();
-	six1();
+	//six1();
+	eight();
 	return 0;
 }
 
@@ -117,7 +120,44 @@ void six1(void)//´ËÎªÊé±¾´ð°¸µÄ½â·¨£¬ÎÒµÄ±¾ÒâÊÇÈçÍ¬two1Ò»Ñù£¬ÏÈÉèÖÃÊý×é¶ÁÈëÊäÈë£
 }
 
 //7****************************************************
-void seven(void)
+void eight(void)
 {
+	double salary_grade = 0; int choose;
+	double hour,salary;
 
+	printf("ÇëÑ¡Ôñ¹¤×ÊµÈ¼¶\n");
+	printf("1)8.75/hr      2)9.33/hr\n");
+	printf("3)10.00/hr     4)11.20/hr\n");
+	printf("5)quit   \n");
+	
+	scanf("%d", &choose);
+
+	switch (choose)
+	{
+	case 1:salary_grade = 8.75;
+		break;
+	case 2:salary_grade = 9.33;
+		break;
+	case 3:salary_grade = 10.00;
+		break;
+	case 4:salary_grade = 11.20;
+		break;
+	default:goto end;
+	}
+
+	printf("ÇëÊäÈëÒ»ÖÜ¹¤×÷Ê±¼ä\n");
+	scanf("%lf", &hour);
+	if (hour > 40)
+		hour = (hour - 40) * 1.5 + 40;
+	salary = hour * salary_grade;
+	if (salary <= 300)
+		salary *= 0.85;
+	else if (salary <= 450)
+		salary = (300 * 0.85) + (salary - 300) * 0.8;
+	else
+		salary = (300 * 0.85) + (150 * 0.8) + (salary - 450) * 0.75;
+
+	printf("%lf\n", salary);
+
+end:printf("³ÌÐò½áÊø");
 }
