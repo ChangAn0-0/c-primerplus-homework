@@ -10,6 +10,7 @@ void four(void);//4
 void six(void);//6,此为错误解法。
 void six1(void);//6
 void eight(void);//8
+void nine(void);//9
 void eleven(void);//11
 int main()
 {
@@ -18,7 +19,8 @@ int main()
 	//four();
 	//six1();
 	//eight();
-	eleven();
+	//eleven();
+	nine();
 	return 0;
 }
 
@@ -167,7 +169,28 @@ end:printf("程序结束");
 //9**********************************************************
 void nine(void)
 {
-
+	int n,i,j;
+	_Bool a = 1;
+	printf("请输入正整数");
+	scanf("%d", &n);
+	if (n == 1)goto end;
+	for (i = 1; i <= n; i++)
+	{
+		if (i == 1)continue;//skip 1;
+		for (j = 1; j * j <= i; j++)
+		{
+			if (j == 1)continue;
+			if (i % j == 0)
+			{
+				a = 0;
+				break;
+			}
+			else
+				a = 1;
+		}
+		if (a)printf("%d ", i);
+	}
+end:return;
 }
 //11**********************************************************
 void eleven(void)
