@@ -6,11 +6,13 @@ void four(void);//4
 double average(double i, double j);//4
 void six(void);//6
 void compare(double* ptr1, double* ptr2, double* ptr3);//6
+void eleven(void);
 int main(void)
 {
 	//two();
 	//four();
-	six();
+	//six();
+	eleven();
 	return 0;
 }
 
@@ -83,4 +85,23 @@ void compare(double* ptr1, double *ptr2, double *ptr3)
 				num[i] = a;
 		    }
 	*ptr1 = num[0]; *ptr2 = num[1]; *ptr3 = num[2];
+}
+
+//11*********************************************************************************************
+void eleven(void)
+{
+	int n, num1, num2, num3;
+	num1 = num2 = num3 = 1;
+	printf(" ‰»Î\n"); scanf("%d", &n);
+	for (int i = 1; i <= n; i++)
+	{
+		if (i >= 3)
+		{
+			num3 = num1 + num2;
+			num1 = num2;
+			num2 = num3;
+			
+		}
+			printf("%d ", num3);
+	}
 }
