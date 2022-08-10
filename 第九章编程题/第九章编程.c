@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <ctype.h>
 void two(void);//2
 void chline(char ch, int i, int j);//2
 void four(void);//4
@@ -7,12 +8,15 @@ double average(double i, double j);//4
 void six(void);//6
 void compare(double* ptr1, double* ptr2, double* ptr3);//6
 void eleven(void);
+void seven(void);//7
+int letter(char ch, char first_letter);//7
 int main(void)
 {
 	//two();
 	//four();
 	//six();
-	eleven();
+	seven();
+	//eleven();
 	return 0;
 }
 
@@ -85,6 +89,34 @@ void compare(double* ptr1, double *ptr2, double *ptr3)
 				num[i] = a;
 		    }
 	*ptr1 = num[0]; *ptr2 = num[1]; *ptr3 = num[2];
+}
+
+//7*****************************************************************************************
+void seven(void)
+{
+	int i = 1;
+	char ch;
+	while ((ch = getchar()) != EOF)
+	{
+		if (islower(ch)) {
+			printf("\n第%d个字符是小写字母\n", i);
+			printf("第%d个字符是字母表第%d个字母\n", i, letter(ch, 'a'));
+		}
+		else if (isupper(ch)) {
+			printf("\n第%d个字符是大写字母\n", i);
+			printf("第%d个字符是字母表第%d个字母\n", i, letter(ch, 'A'));
+		}
+		else
+			printf("\n第%d个字符不是字母\n", i);
+		i++;
+	}
+}
+
+int letter(char ch, char first_letter)
+{
+	int a;
+	a = (int)ch - (int)first_letter + 1;
+	return a;
 }
 
 //11*********************************************************************************************
