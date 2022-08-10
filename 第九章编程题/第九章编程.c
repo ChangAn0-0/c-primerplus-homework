@@ -10,12 +10,17 @@ void compare(double* ptr1, double* ptr2, double* ptr3);//6
 void eleven(void);
 void seven(void);//7
 int letter(char ch, char first_letter);//7
+void eight(void);//8
+double pow1(double num, int pow);//8
+double pow2(double num, int pow);//9
+double pow_up(double num, int pow);
 int main(void)
 {
 	//two();
 	//four();
 	//six();
-	seven();
+	//seven();
+	eight();
 	//eleven();
 	return 0;
 }
@@ -118,6 +123,83 @@ int letter(char ch, char first_letter)
 	a = (int)ch - (int)first_letter + 1;
 	return a;
 }
+
+//8,9*********************************************************************************
+void eight(void)
+{
+	double num;
+	int pow;
+	printf("输入数字");
+	scanf("%lf", &num);
+	printf("输入幂");
+	scanf("%d", &pow);
+
+	//printf("%lf", pow1(num, pow));
+	printf("%lf", pow2(num, pow));
+}
+
+double pow1(double num, int pow)
+{
+	double a = num;
+	if (num == 0)
+	{
+		if (pow == 0)
+			printf("未定义");
+		else
+			return 0;
+	}
+	else
+	{
+		if (pow == 0)
+			return 1;
+		else
+		{
+			if (pow > 0)
+				for (int i = 0; i < pow; i++)
+					a *= num;
+			else
+				for (int i = 0; i + pow < 0; i++)
+					a *= (1 / num);
+		}
+	}
+	return a;
+}
+
+double pow2(double num, int pow)
+{
+	double a=num;
+	int b = pow;
+	if (num == 0)
+	{
+		if (pow == 0)
+			printf("未定义");
+		else
+			return 0;
+	}
+	else
+	{
+		if (pow == 0)
+			return 1;
+		else
+		{
+			if (pow > 1) {
+				a = pow_up(a, b);
+			}
+			/*else{
+				a = pow_low(a, b);
+			}*/
+		}
+	}
+	return a;
+}
+
+double pow_up(double num, int pow) {
+	double a=1;
+	if (pow > 0)
+		a = pow_up(num, pow--);
+		return a * num;
+}
+
 
 //11*********************************************************************************************
 void eleven(void)
