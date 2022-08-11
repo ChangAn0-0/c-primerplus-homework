@@ -13,8 +13,7 @@ int letter(char ch, char first_letter);//7
 void eight(void);//8
 double pow1(double num, int pow);//8
 double pow2(double num, int pow);//9
-double pow_up(double num, int pow);//9
-double pow_low(double num, int pow);//9
+double pow_up(double num, int pow);
 int main(void)
 {
 	//two();
@@ -135,8 +134,8 @@ void eight(void)
 	printf("ÊäÈëÃÝ");
 	scanf("%d", &pow);
 
-	printf("%lf\n", pow1(num, pow));
-	printf("%lf\n", pow2(num, pow));
+	//printf("%lf", pow1(num, pow));
+	printf("%lf", pow2(num, pow));
 }
 
 double pow1(double num, int pow)
@@ -156,10 +155,10 @@ double pow1(double num, int pow)
 		else
 		{
 			if (pow > 0)
-				for (int i = 1; i < pow; i++)
+				for (int i = 0; i < pow; i++)
 					a *= num;
 			else
-				for (int i = 1; i + pow < 0; i++)
+				for (int i = 0; i + pow < 0; i++)
 					a *= (1 / num);
 		}
 	}
@@ -183,39 +182,23 @@ double pow2(double num, int pow)
 			return 1;
 		else
 		{
-			if (pow > 0) {
+			if (pow > 1) {
 				a = pow_up(a, b);
 			}
-		    else{
-				a = pow_low(1/a, b);
-			}
+			/*else{
+				a = pow_low(a, b);
+			}*/
 		}
 	}
 	return a;
 }
 
 double pow_up(double num, int pow) {
-	double a;
+	double a=1;
 	if (pow > 0)
-		a = num * pow_up(num, pow - 1);
-	else
-		a = 1;
-	return a;
+		a = pow_up(num, pow--);
+		return a * num;
 }
-
-double pow_low(double num, int pow) {
-	double a;
-	if (pow < 0)
-	{
-		a = num * pow_low(num, pow + 1);
-	}
-	else
-		a = 1;
-	return a;
-}
-
-
-
 
 
 //11*********************************************************************************************
