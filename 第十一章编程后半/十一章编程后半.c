@@ -38,3 +38,4 @@ int myatoi(char num[],int i)
 	}
 	return sum/10;
 }
+
