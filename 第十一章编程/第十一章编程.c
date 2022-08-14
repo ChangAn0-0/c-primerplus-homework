@@ -89,13 +89,15 @@ void eight(void)
 {
 	char ch;
 	char* ptr;
-	int i = 0; int n = 0;
+	int i = 4; int n = 2;
 	char str1[40];
 	char str2[40];
 
 	printf("ÊäÈë×Ö·û´®1");
 	while ((str1[i] = getchar()) != '\n')
 		i++;
+	/*while ((ch = getchar()) != '\n')
+		continue;*/
 	printf("ÊäÈë×Ö·û´®2");
 	while ((str2[i] = getchar()) != '\n')
 		n++;
@@ -109,15 +111,12 @@ char* string_in(char str1[], char str2[],int a, int b)
 	for (int i = 0; i < b; i++) 
 	{
 		for (int n = 0; n < a; n++)
-		{
-			if (str1[n] == str2[i])
-				num = 1;
-		}
-		if (!num)
+			if (str1[n] == str2[i])num = 1;
+		if (num==0)
 			return 0;
 		num = 0;
 	}
 	for (int i = 0; i < a; i++)
 		if (str1[i] == str2[0])
-			return str1 + i;
+			return str1 + i + 1;
 }
