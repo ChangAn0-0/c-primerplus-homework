@@ -1,15 +1,21 @@
+#define  _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 void five(void);//5
 void four(void);//4
 int frequency(void);//4
 void six(void);//6
+void nine(void);//9
+
 int main(void)
 {
 	//four();
 	//five();
-	six();
+	//six();
+	nine();
 	return 0;
 }
 
@@ -77,4 +83,24 @@ void six(void)
 		printf(" % d: % d\n", i, frequency);
 		frequency = 0;
 	}
+}
+
+//9*****************************************************************************
+void nine(void)
+{
+	int n; char** ptr;
+	printf("需要输入多少个单词？");
+	scanf("%d", &n);
+	ptr = (char**)malloc(n * sizeof(char*));
+	printf("请输入第%d个单词？" ,n);
+	for (int i = 0; i < n; i++)
+	{
+		char word[40]; scanf("%s", word);
+		int length = strlen(word);
+		char* str = (char*)malloc(length * sizeof(char));
+		strcpy(str, word);
+		*(ptr+i) = str;
+	}
+	for (int i = 0; i < n; i++)
+		puts(*(ptr + i));
 }
