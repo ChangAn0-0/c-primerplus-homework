@@ -41,7 +41,7 @@ void two(char *file1,char* file2)
 	size_t bytes;
 	FILE* ptr1; FILE* ptr2;
 	char temp[4096];
-	if(ptr1 = fopen(file1, "rb")==NULL);
+	if((ptr1 = fopen(file1, "rb"))==NULL)
 	{
 		fprintf(stderr, "无法打开文件%s", file1);
 		exit(EXIT_FAILURE);
@@ -60,7 +60,7 @@ void two(char *file1,char* file2)
 		fprintf(stderr, "打开文件%s失败", file2);
 		exit(EXIT_FAILURE);
 	}
-	if (setvbuf(ptr2, NULL, _IOFBF, 4096))
+	if (setvbuf(ptr2, NULL, _IOFBF, 4096)!=0)
 	{
 		fputs("file2申请缓冲失败", stderr);
 		exit(EXIT_FAILURE);
