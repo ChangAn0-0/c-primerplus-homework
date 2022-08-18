@@ -4,9 +4,11 @@
 #include <string.h>
 char* s_gets(char* st, int n);//1
 void one(void);//1
+void two(char* file1, char* file2);//
 int main(int argc,char* argv[])
 {
-	one();
+	//one();
+	two(argv[1], argv[2]);
 	return 0;
 }
 
@@ -33,6 +35,48 @@ void one(void)
 	printf("%s有%lu个字符", name, count);
 }
 
+//2****************************************************************************************
+void two(char *file1,char* file2)
+{
+	size_t bytes;
+	FILE* ptr1; FILE* ptr2;
+	char temp[4096];
+	if(ptr1 = fopen(file1, "rb")==NULL);
+	{
+		fprintf(stderr, "无法打开文件%s", file1);
+		exit(EXIT_FAILURE);
+	}
+	if(setvbuf(ptr1,NULL,_IOFBF,4096)!=0)
+	{
+		fputs("file1申请缓冲失败", stderr);
+		exit(EXIT_FAILURE);
+	}
+	if (strcmp(file1, file2) == 0)
+	{
+		fputs("无法对相同文件进行操作",stderr);
+	}
+	if ((ptr2 = fopen(file2, "wb")) == NULL)
+	{
+		fprintf(stderr, "打开文件%s失败", file2);
+		exit(EXIT_FAILURE);
+	}
+	if (setvbuf(ptr2, NULL, _IOFBF, 4096))
+	{
+		fputs("file2申请缓冲失败", stderr);
+		exit(EXIT_FAILURE);
+	}
+	while ((bytes = fread(temp, sizeof(char), 4096, ptr1)) > 0)
+		fwrite(temp, sizeof(char), bytes, ptr2);
+	if(ferror(ptr1)!=0)
+		fputs("file读取失败", stderr);
+	if (ferror(ptr2) != 0)
+		fputs("file输入失败", stderr);
+	fclose(ptr1);
+	fclose(ptr2);
+}
+
+
+//*************************************************************************************************
 char* s_gets(char* st, int n)
 {
 	char* ret_val;
