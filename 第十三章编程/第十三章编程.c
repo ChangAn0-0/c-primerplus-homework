@@ -3,19 +3,23 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
 
 char* s_gets(char* st, int n);//1
 void one(void);//1
 void two(char* file1, char* file2);//
 void five_review(char* ch, char* file);//five_review
 void three(void);//3
+void twelve(void);//12
+//void fourteen(char* symbol[31]);//14
 
 int main(int argc,char* argv[])
 {
 	//one();
 	//two(argv[1], argv[2]);
 	//five_review(argv[1], argv[2]);
-	three();
+	//three();
+	twelve();
 	return 0;
 }
 
@@ -135,8 +139,150 @@ void three(void)
 //12************************************************************************************************
 void twelve(void)
 {
+	char ch; int i = 0; int n = 0;
+	char symbol[10] = { ' ','.','\'',':','~','*','=','@','%','#' };
+	char picture[20][31]={0};
+	//char**ptr = picture;
+	FILE* fp;
+	if ((fp = fopen("picture.txt", "r")) == NULL)
+	{
+		printf("打开文件失败");
+		exit(EXIT_FAILURE);
+	}
+	printf("Original Image:\n");
+	while ((ch = getc(fp)) != EOF)
+	{
+		if (ch == ' ')
+			continue;
+		else if (ch == '\n')
+		{
+			putchar('\n');
+			picture[n][i] = '\0';
+			i = 0; n = n + 1;
+		}
+		else
+		{
+			putchar(symbol[ch - '0']);
+			picture[n][i] = symbol[ch - '0'];
+			i++;
+		}
+	}
+	int m = 0, k = 0;
+	_Bool mark = 1;
+	printf("\nOptimized Image:\n");
+	for (m; m < 20; n++)
+	{
+		for (k; k < 30; i++)
+		{
+			int sum = 0, around = 0;
+			if (k > 0)
+			{
+				if (abs(picture[m][k] - picture[m][k - 1]) <= 1)
+				{
+					mark = 0;
+					sum += picture[m][k - 1];
+					around++;
+				}
 
+			}
+			if (m > 0)
+			{
+				if (abs(picture[m][k] - picture[m - 1][k]) <= 1)
+				{
+					mark = 0;
+					sum += picture[m - 1][k];
+					around++;
+				}
+
+			}
+			if (k < 30)
+			{
+				if (abs(picture[m][k + 1] - picture[m][k]) <= 1)
+				{
+					mark = 0;
+					sum += picture[m][k + 1];
+					around++;
+				}
+
+			}
+			if (m < 20)
+			{
+				if (abs(picture[m + 1][k] - picture[m][k]) <= 1)
+				{
+					mark = 0;
+					sum += picture[m + 1][k];
+					around++;
+				}
+
+			}
+			if (mark == 1)
+				picture[m][k] = sum / around;
+		}
+	}
+	for (int n=0; n < 20; n++)
+	{
+		for (int i=0; i < 30; i++)
+			putchar(picture[n][i]);
+	}
+	putchar('\n');
 }
+
+//14***********************************************************************************************
+/*void fourteen(char symbol)
+{
+	int i = 0, n = 0;
+	_Bool mark= 1;
+	printf("\nOptimized Image:\n");
+	for (n; n < 20; n++)
+	{
+		for (i; i < 30;i++) 
+		{
+			int sum = 0, around = 0;
+			if (i > 0) 
+			{
+				if (abs(symbol[n][i] - symbol[n][i - 1]) <= 1)
+				{
+					mark = 0;
+					sum += symbol[n][i - 1];
+					around++;
+				}
+
+			}
+			if (n > 0)
+			{
+				if (abs(symbol[n][i] - symbol[n-1][i]) <= 1)
+				{
+					mark = 0;
+					sum += symbol[n-1][i];
+					around++;
+				}
+
+			}
+			if (i < 30)
+			{
+				if (abs(symbol[n][i+1] - symbol[n][i]) <= 1)
+				{
+					mark = 0;
+					sum += symbol[n][i+1];
+					around++;
+				}
+
+			}
+			if (n < 20)
+			{
+				if (abs(symbol[n+1][i] - symbol[n][i]) <= 1)
+				{
+					mark = 0;
+					sum += symbol[n+1][i];
+					around++;
+				}
+
+			}
+			if (mark == 1)
+				symbol[n][i] = sum / around;
+		}
+	}
+}*/
 
 //*************************************************************************************************
 char* s_gets(char* st, int n)
@@ -149,7 +295,7 @@ char* s_gets(char* st, int n)
 		find = strchr(st, '/n');
 		if (find)
 			*find = '\0';
-		else
+		else 
 			while (getchar() != '\n')
 				continue;
 	}
