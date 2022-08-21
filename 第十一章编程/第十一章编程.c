@@ -17,8 +17,8 @@ int main(void)
 	//three();
 	//five();
 	//seven();
-	//eight();
-	ten();
+	eight();
+	//ten();
 	return 0;
 }
 
