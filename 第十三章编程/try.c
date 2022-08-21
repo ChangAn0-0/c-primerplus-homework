@@ -12,7 +12,7 @@ int main(void)
 	char symbol[10] = { ' ','.','\'',':','~','*','=','@','%','#' };
 	int picture[20][31] = { 0 };
 	FILE* fp;
-	if ((fp = fopen("picture.txt", "r")) == NULL)
+	if ((fp = fopen("file.txt", "r")) == NULL)
 	{
 		printf("打开文件失败");
 		exit(EXIT_FAILURE);
