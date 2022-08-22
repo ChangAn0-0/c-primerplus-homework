@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="three.c">
+    <ClCompile Include="try.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
