@@ -3,9 +3,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
+
 
 int SumDays(const struct month Year[], int n);
 char* s_gets(char MonthName[], int n);
+int ExactSumDays(char* name[], const struct month Year[]);
 
 
 struct month {
@@ -16,10 +19,11 @@ struct month {
 
 int main(void)
 {
-	int n;
-	char MonthName[20];
+	//int n; int mark;
+	//char MonthName[5];
 	struct month Year[12];
-	char *name[] = {"Jan","Feb","Mar","Apr","May","JUne","JUl","Aug","Sep","Oct","Nov","Dec"};
+    char *name[] = {"Jan","Feb","Mar","Apr","May","JUne","JUl","Aug","Sep","Oct","Nov","Dec"};
+	enum month1{ Jan, Feb, Mar, Apr, May, JUne, JUl, Aug, Sep, Oct, Nov, Dec};
 	int days[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
 	int arr[12] = { 1,2,3,4,5,6,7,8,9,10,11,12 };
 
@@ -32,15 +36,27 @@ int main(void)
 		Year[i].month_num = arr[i];
 	}
 
-	puts(Year[0].month_name);
-	puts(Year[11].month_name);
+	//puts(Year[0].month_name);
+	//puts(Year[11].month_name);
 
 	//printf("enter a month:");
 	//scanf_s("%d", &n);
 	//printf("%d",SumDays(Year, n));
 
-	//s_gets(MonthName,20);
+	/*printf("enter a month name:");
+	s_gets(MonthName,4);
+	MonthName[0] = toupper(MonthName[0]);
+	puts(MonthName);
+	for (mark = Jan; mark <= Dec; mark++)
+	{
+		if (strcmp(MonthName, name[mark]) == 0)
+			break;
+		else
+			exit(EXIT_FAILURE);
+	}
+	printf("%d", SumDays(Year, mark+1));*/
 
+	printf("%d", ExactSumDays(name,Year));
 
 	return 0;
 }
@@ -69,4 +85,42 @@ char* s_gets(char MonthName[], int n)
 		}
 	}
 	return str;
+}
+
+int ExactSumDays(char* name[],const struct month Year[])
+{
+	int n; int mark; int sum;
+	int years, days;
+	char MonthName[5];
+	enum month1 { Jan, Feb, Mar, Apr, May, JUne, JUl, Aug, Sep, Oct, Nov, Dec };
+	//puts(name[3]);
+
+	printf("enter year:");
+	scanf("%d", &years);
+	printf("enter month:");
+	if (scanf("%d", &n) == 1)
+	{
+		sum = SumDays(Year, n);
+	}
+	else {
+		s_gets(MonthName, 4);
+		MonthName[0] = toupper(MonthName[0]);
+		puts(MonthName);
+		for (mark = Jan; mark <= Dec; mark++)
+		{
+			if (strcmp(MonthName, name[mark]) == 0)
+				break;
+			//else
+				//exit(EXIT_FAILURE);
+		}
+		sum = SumDays(Year, mark+1);
+	}
+
+	printf("enter day:");
+	scanf("%d", &days);
+	sum = days + sum;
+	if (years % 4 == 0)
+		sum += 1;
+	
+	return sum;
 }

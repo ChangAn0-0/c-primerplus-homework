@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="编程第一二题及复习题5.c">
+    <ClCompile Include="第六题.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
