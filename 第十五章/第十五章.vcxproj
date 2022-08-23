@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b5363b41-1514-4ea1-946b-3dca063c2236}</ProjectGuid>
-    <RootNamespace>第十四章编程</RootNamespace>
+    <ProjectGuid>{4b96775f-6b3d-4ea0-8c9e-5cf35a0a5afc}</ProjectGuid>
+    <RootNamespace>第十五章</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="第七题.c" />
+    <ClCompile Include="第六题.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
