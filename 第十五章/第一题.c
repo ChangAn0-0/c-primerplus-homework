@@ -14,9 +14,9 @@ int main(void)
 	for (int i = 0; i < 8; i++)
 	{
 		sum += num[i] ;
-		if (i);
+		if (i)
 		sum *= 2;
 	}
-	printf("%d", sum/2);
+	printf("%d", sum);
 	return 0;
 }
