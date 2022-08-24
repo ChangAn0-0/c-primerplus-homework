@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="第二题.c">
+    <ClCompile Include="可变参数.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
