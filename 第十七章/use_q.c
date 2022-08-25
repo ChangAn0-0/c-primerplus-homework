@@ -31,7 +31,7 @@ int main(void)
 			else
 			{
 				DeQueue(&temp, &line);
-				printf("Removing &d from queue\n", temp);
+				printf("Removing %d from queue\n", temp);
 			}
 		}
 		printf("%d items in queue\n", QueueItemCount(&line));
