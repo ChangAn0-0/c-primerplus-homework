@@ -233,4 +233,4 @@ static void DeleteNode(Trnode** ptr)
 		*ptr = (*ptr)->left;
 		free(temp);
 	}
-}
+}//
